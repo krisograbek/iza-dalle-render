@@ -24,11 +24,6 @@ const GenerateButtonStyled = styled.button`
   }
 `;
 
-// The rest of your GenerateButton component remains the same
-
-
-// Rest of the GenerateButton component...
-
 
 const GenerateButton = ({ onGenerate }) => {
   return (
