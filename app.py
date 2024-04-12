@@ -1,6 +1,6 @@
 import os
 import base64
-import datetime
+from datetime import datetime
 from io import BytesIO
 from PIL import Image
 
@@ -32,10 +32,12 @@ def generate_images():
         )
         revised_prompt = image.data[0].revised_prompt
 
+        # print(f"Revised: {revised_prompt}")
+
         # Generate a unique filename for the image
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         prompt_snippet = "".join(
-            filter(str.isalnum, prompt[:10])
+            filter(str.isalnum, prompt[-10:])
         )  # clean and truncate prompt
         filename = f"{timestamp}_{prompt_snippet}.png"
         image_url = os.path.join(IMAGES_DIR, filename)
@@ -57,6 +59,7 @@ def generate_images():
 
     except Exception as e:
         # Handle exceptions such as JSON errors, decoding failures, etc.
+        print(str(e))
         return jsonify({"error": str(e)}), 500
 
 
