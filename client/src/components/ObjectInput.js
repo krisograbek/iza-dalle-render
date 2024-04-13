@@ -20,7 +20,7 @@ const ObjectInput = ({ objects, setObjects }) => {
     <ObjectInputContainer>
       <ObjectInputField
         type="text"
-        placeholder="Enter objects separated by commas"
+        placeholder="Enter objects separated by semicolons"
         value={objects}
         onChange={(e) => setObjects(e.target.value)}
       />

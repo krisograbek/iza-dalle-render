@@ -1,5 +1,5 @@
 // Replace this with the actual API URL
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5001';
 
 export const generateImages = async (prompt, object) => {
   const fullPrompt = `${prompt} \n\n[Objects]: ${object}`

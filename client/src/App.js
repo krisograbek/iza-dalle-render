@@ -16,14 +16,15 @@ function App() {
   const [images, setImages] = useState([]);
   const [promptTemplate, setPromptTemplate] = useState("Create an image of [Objects] in the styles of: ");
   const [editablePrompt, setEditablePrompt] = useState("");
+  const [shouldCombineStyles, setShouldCombineStyles] = useState(false);
 
-  const [info, setInfo] = useState("")
+  // const [info, setInfo] = useState("");
 
   useEffect(() => {
     // Update the editable prompt when selected styles or objects change
     const stylesText = selectedStyles.join(', ');
     // const objectsText = objects.join('; ');
-    setInfo(`You will generate the total of ${objects.split(";").length} images: `)
+    // setInfo(`You will generate the total of ${objects.split(";").length} images: `)
     setEditablePrompt(`${promptTemplate} ${stylesText}`);
   }, [promptTemplate, selectedStyles, objects]);
 
@@ -69,7 +70,6 @@ function App() {
         <ObjectInput objects={objects} setObjects={setObjects} />
         <PromptInput prompt={editablePrompt} setPrompt={setEditablePrompt} />
         <GenerateButton onGenerate={onGenerate} />
-        <span>{info}</span>
         <ImageDisplay images={images} />
       </div>
     </>
