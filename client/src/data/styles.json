@@ -4,15 +4,143 @@
         "imageURL": ""
     },
     {
-        "name": "night light",
-        "imageURL": ""
-    },
-    {
         "name": "sketch",
         "imageURL": ""
     },
     {
-        "name": "llava",
+        "name": "calligraphy",
+        "imageURL": ""
+    },
+    {
+        "name": "japanese ink art",
+        "imageURL": ""
+    },
+    {
+        "name": "minimalist",
+        "imageURL": ""
+    },
+    {
+        "name": "monochromatic",
+        "imageURL": ""
+    },
+    {
+        "name": "charcoal old sketch",
+        "imageURL": ""
+    },
+    {
+        "name": "muted solid colors",
+        "imageURL": ""
+    },
+    {
+        "name": "naive art",
+        "imageURL": ""
+    },
+    {
+        "name": "cubism",
+        "imageURL": ""
+    },
+    {
+        "name": "low poly art",
+        "imageURL": ""
+    },
+    {
+        "name": "acrylic painting",
+        "imageURL": ""
+    },
+    {
+        "name": "oil painting",
+        "imageURL": ""
+    },
+    {
+        "name": "art nouveau",
+        "imageURL": ""
+    },
+    {
+        "name": "made of stars",
+        "imageURL": ""
+    },
+    {
+        "name": "made of flowing lava",
+        "imageURL": ""
+    },
+    {
+        "name": "made of origami",
+        "imageURL": ""
+    },
+    {
+        "name": "linocut",
+        "imageURL": ""
+    },
+    {
+        "name": "woodcut",
+        "imageURL": ""
+    },
+    {
+        "name": "silk screen",
+        "imageURL": ""
+    },
+    {
+        "name": "cave art",
+        "imageURL": ""
+    },
+    {
+        "name": "futurism",
+        "imageURL": ""
+    },
+    {
+        "name": "pixel art",
+        "imageURL": ""
+    },
+    {
+        "name": "art deco",
+        "imageURL": ""
+    },
+    {
+        "name": "night light",
+        "imageURL": ""
+    },
+    {
+        "name": "dusk lighting",
+        "imageURL": ""
+    },
+    {
+        "name": "analog film",
+        "imageURL": ""
+    },
+    {
+        "name": "fish eye lens",
+        "imageURL": ""
+    },
+    {
+        "name": "pinhole camera",
+        "imageURL": ""
+    },
+    {
+        "name": "motion blur",
+        "imageURL": ""
+    },
+    {
+        "name": "sepia",
+        "imageURL": ""
+    },
+    {
+        "name": "dawn lighting",
+        "imageURL": ""
+    },
+    {
+        "name": "35mm film",
+        "imageURL": ""
+    },
+    {
+        "name": "aerial view",
+        "imageURL": ""
+    },
+    {
+        "name": "golden hour lighting",
+        "imageURL": ""
+    },
+    {
+        "name": "neon lights",
         "imageURL": ""
     }
 ]
