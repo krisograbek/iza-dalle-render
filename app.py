@@ -14,7 +14,12 @@ load_dotenv()
 
 client = OpenAI()
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path="",
+    static_folder="./client/build",
+    template_folder="./client/build",
+)
 CORS(app)
 
 IMAGES_DIR = "images"
