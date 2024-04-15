@@ -1,7 +1,7 @@
 // Replace this with the actual API URL
 const API_URL = 'http://localhost:5001';
 
-export const generateImages = async (prompt, object) => {
+export const generateImages = async (prompt, object, isHD, imageAspect) => {
   const fullPrompt = `${prompt} \n\n[Objects]: ${object}`
   try {
     const response = await fetch(`${API_URL}/generate`, {
@@ -9,7 +9,7 @@ export const generateImages = async (prompt, object) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt: fullPrompt }),
+      body: JSON.stringify({ prompt: fullPrompt, hd: isHD, ar: imageAspect }),
     });
 
     if (!response.ok) {

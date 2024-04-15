@@ -64,12 +64,27 @@ def generate_images():
         # Retrieve prompt from request
         data = request.json
         prompt = data["prompt"]
+        quality = "hd" if data["hd"] else "standard"
+        aspect_ratio = data["ar"]
+
+        if aspect_ratio == "square":
+            image_size = "1024x1024"
+        elif aspect_ratio == "vertical":
+            image_size = "1024x1792"
+        elif aspect_ratio == "horizontal":
+            image_size = "1792x1024"
+        else:
+            image_size = "1024x1024"
 
         print(f"Prompt: {prompt}")
 
         # Simulate image generation using client API
         image = client.images.generate(
-            model="dall-e-3", prompt=prompt, response_format="b64_json"
+            model="dall-e-3",
+            prompt=prompt,
+            response_format="b64_json",
+            quality=quality,
+            size=image_size,
         )
         revised_prompt = image.data[0].revised_prompt
 

@@ -9,6 +9,10 @@ import { generateImages } from './services/api';
 
 import stylesData from './data/styles.json'; // Assuming you have a styles.json file in the assets directory
 import PromptInput from './components/PromptInput';
+import SetupPanel from './components/SetupPanel';
+import StyledCheckbox from './components/StyledCheckbox';
+import StyledRadio from './components/StyledRadio';
+import AspectRadioGroup from './components/AspectRatioGroup';
 
 function App() {
   const [selectedStyles, setSelectedStyles] = useState([]);
@@ -17,6 +21,13 @@ function App() {
   const [promptTemplate, setPromptTemplate] = useState("Create an image of [Objects] in the styles of: ");
   const [editablePrompt, setEditablePrompt] = useState("");
   const [shouldCombineStyles, setShouldCombineStyles] = useState(false);
+  const [isHD, setIsHD] = useState(false);
+
+  const [imageAspect, setImageAspect] = useState('square');
+
+  const handleAspectChange = (aspect) => {
+    setImageAspect(aspect);
+  };
 
   // const [info, setInfo] = useState("");
 
@@ -40,6 +51,10 @@ function App() {
     });
   };
 
+  const handleisHDChange = () => {
+    setIsHD(!isHD);
+  };
+
 
   const onGenerate = async () => {
     // Construct the prompt using the selected styles and objects
@@ -49,7 +64,7 @@ function App() {
     for (const object of listOfObjects) {
       // const prompt = `Create an image of ${object} in the styles of ${selectedStyles.join(', ')}`;
       try {
-        const generatedImage = await generateImages(editablePrompt, object);
+        const generatedImage = await generateImages(editablePrompt, object, isHD, imageAspect);
         generatedImages.push(generatedImage);
       } catch (error) {
         // Handle errors here
@@ -66,6 +81,13 @@ function App() {
     <>
       <GlobalStyle />
       <div className="App">
+        <SetupPanel>
+          <AspectRadioGroup onAspectChange={handleAspectChange} />
+          <StyledCheckbox name="HD" checked={isHD} onChange={handleisHDChange}>
+            HD
+          </StyledCheckbox>
+          {/* Here you can include <StyledRadio> and <StyledCheckbox> components */}
+        </SetupPanel>
         <StyleSelector styles={stylesData} onSelectStyle={onSelectStyle} selectedStyles={selectedStyles} />
         <ObjectInput objects={objects} setObjects={setObjects} />
         <PromptInput prompt={editablePrompt} setPrompt={setEditablePrompt} />
