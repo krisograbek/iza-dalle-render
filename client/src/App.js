@@ -10,6 +10,7 @@ import StyleSelector from './components/StyleSelector';
 import StyledCheckbox from './components/StyledCheckbox';
 import stylesData from './data/styles.json';
 import { generateImages } from './services/api';
+import AspectRatioSelector from './components/AspectRatioSelector';
 
 function App() {
   const [selectedStyles, setSelectedStyles] = useState([]);
@@ -21,12 +22,11 @@ function App() {
   const [isHD, setIsHD] = useState(false);
 
   const [imageAspect, setImageAspect] = useState('square');
+  const [aspectRatio, setAspectRatio] = useState('square'); // duplicate
 
   const handleAspectChange = (aspect) => {
     setImageAspect(aspect);
   };
-
-  // const [info, setInfo] = useState("");
 
   useEffect(() => {
     let stylesText = "";
@@ -94,7 +94,11 @@ function App() {
       <GlobalStyle />
       <div className="App">
         <SetupPanel>
-          <AspectRadioGroup onAspectChange={handleAspectChange} />
+          {/* <AspectRadioGroup onAspectChange={handleAspectChange} /> */}
+          <AspectRatioSelector
+            currentAspect={aspectRatio}
+            onAspectChange={setAspectRatio}
+          />
           <StyledCheckbox name="HD" checked={isHD} onChange={handleHDChange}>
             HD
           </StyledCheckbox>
