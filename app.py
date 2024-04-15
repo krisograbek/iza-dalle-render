@@ -5,7 +5,7 @@ from datetime import datetime, date
 from io import BytesIO
 from PIL import Image
 
-from flask import Flask, request, jsonify, send_from_directory, url_for
+from flask import Flask, request, jsonify, send_from_directory, url_for, render_template
 from flask_cors import CORS
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -27,6 +27,11 @@ DATA_DIR = "data"
 
 DYNAMIC_FOLDER = os.path.join(os.getcwd(), IMAGES_DIR)
 DYNAMIC_FOLDER_DATA = os.path.join(os.getcwd(), DATA_DIR)
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
 
 
 def save_prompt_and_url_to_json(revised_prompt, image_url):
