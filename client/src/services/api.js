@@ -3,6 +3,7 @@ const API_URL = 'http://localhost:5001';
 
 export const generateImages = async (prompt, object, isHD, imageAspect) => {
   const fullPrompt = `${prompt} \n\n[Objects]: ${object}`
+  console.log(fullPrompt)
   try {
     const response = await fetch(`${API_URL}/generate`, {
       method: 'POST',

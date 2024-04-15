@@ -5,6 +5,7 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   margin: 10px 0;
+  cursor: pointer;
   color: ${({ theme }) => theme.darkGray};
 `;
 
