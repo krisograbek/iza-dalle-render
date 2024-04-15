@@ -23,6 +23,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 40px;
     max-width: 1200px;
     margin: auto;
+
+    @media (max-width: 768px) {
+      padding: 5px;
   }
 `;
 
