@@ -10,7 +10,6 @@ export function useStyleSelection() {
       ? prevSelectedStyles.filter(style => style !== styleName)
       : [...prevSelectedStyles, styleName]
     );
-    console.log(selectedStyles.length)
   };
 
   const toggleCombineStyles = () => {

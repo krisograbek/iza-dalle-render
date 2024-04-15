@@ -20,7 +20,7 @@ function App() {
 
   const {
     images, onGenerate, objects, setObjects, editablePrompt, setEditablePrompt,
-    isHD, setIsHD, imageAspect, setImageAspect
+    isHD, toggleIsHD, imageAspect, setImageAspect
   } = useImageGenerator(selectedStyles, shouldCombineStyles);
 
   return (
@@ -32,7 +32,7 @@ function App() {
             currentAspect={imageAspect}
             onAspectChange={setImageAspect}
           />
-          <StyledCheckbox name="HD" checked={isHD} onChange={setIsHD}>
+          <StyledCheckbox name="HD" checked={isHD} onChange={toggleIsHD}>
             HD
           </StyledCheckbox>
           <StyledCheckbox name="Combine Styles" checked={shouldCombineStyles} onChange={toggleCombineStyles}>

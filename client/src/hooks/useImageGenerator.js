@@ -9,6 +9,8 @@ export function useImageGenerator(selectedStyles, shouldCombineStyles) {
   const [isHD, setIsHD] = useState(false);
   const [imageAspect, setImageAspect] = useState('square');
 
+  const toggleIsHD = () => setIsHD(!isHD);
+
   const onGenerate = async (e) => {
     e.preventDefault();
     console.log('Generating images with', selectedStyles, objects, isHD, imageAspect);
@@ -48,6 +50,6 @@ export function useImageGenerator(selectedStyles, shouldCombineStyles) {
 
   return {
     images, onGenerate, objects, setObjects, editablePrompt, setEditablePrompt,
-    isHD, setIsHD, imageAspect, setImageAspect
+    isHD, toggleIsHD, imageAspect, setImageAspect
   };
 }
