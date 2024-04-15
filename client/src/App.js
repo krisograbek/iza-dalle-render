@@ -12,6 +12,7 @@ import stylesConfig from './config/stylesConfig';
 
 import { useImageGenerator } from './hooks/useImageGenerator';
 import { useStyleSelection } from './hooks/useStyleSelection';
+import Loader from './components/Spinner';
 
 function App() {
   const {
@@ -20,7 +21,7 @@ function App() {
 
   const {
     images, onGenerate, objects, setObjects, editablePrompt, setEditablePrompt,
-    isHD, toggleIsHD, imageAspect, setImageAspect
+    isHD, toggleIsHD, imageAspect, setImageAspect, generationProgress, isLoading
   } = useImageGenerator(selectedStyles, shouldCombineStyles);
 
   return (
@@ -43,6 +44,13 @@ function App() {
         <ObjectInput objects={objects} setObjects={setObjects} />
         <PromptInput prompt={editablePrompt} setPrompt={setEditablePrompt} />
         <GenerateButton onGenerate={onGenerate} />
+        <p>{`Images to generate: ${generationProgress.total}`}</p>
+        {isLoading && (
+          <>
+            <p>{`Generating image ${generationProgress.current}/${generationProgress.total}`}</p>
+            <Loader /> {/* You will need a Spinner component */}
+          </>
+        )}
         <ImageDisplay images={images} />
       </div>
     </>

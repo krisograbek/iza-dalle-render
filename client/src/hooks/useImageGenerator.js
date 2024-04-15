@@ -8,48 +8,54 @@ export function useImageGenerator(selectedStyles, shouldCombineStyles) {
   const [editablePrompt, setEditablePrompt] = useState("Create an image of [Objects] ");
   const [isHD, setIsHD] = useState(false);
   const [imageAspect, setImageAspect] = useState('square');
+  const [isLoading, setIsLoading] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState({ current: 0, total: 0 });
 
   const toggleIsHD = () => setIsHD(!isHD);
 
-  const onGenerate = async (e) => {
-    e.preventDefault();
-    console.log('Generating images with', selectedStyles, objects, isHD, imageAspect);
-    const generatedImages = [];
-    const listOfObjects = objects.split("; ");
-    const stylesText = shouldCombineStyles ? `combining the styles of ${selectedStyles.join(', ')}` : "";
-    const basePrompt = `${editablePrompt} ${stylesText}`;
 
+  useEffect(() => {
+    const listOfObjects = objects.split("; ").filter(Boolean);
+    const totalImages = shouldCombineStyles ? listOfObjects.length : listOfObjects.length * selectedStyles.length;
+    setGenerationProgress(prev => ({ ...prev, total: totalImages }));
+  }, [objects, selectedStyles, shouldCombineStyles]);
+
+  const onGenerate = async () => {
+    const listOfObjects = objects.split("; ").filter(Boolean);
+    setIsLoading(true);
+    setGenerationProgress(prev => ({ ...prev, current: 0 }));
+    const generatedImages = [];
     for (const object of listOfObjects) {
       if (shouldCombineStyles) {
         try {
-          const generatedImage = await generateImages(basePrompt, object, isHD, imageAspect);
+          const prompt = `${editablePrompt} combining the styles of ${selectedStyles.join(', ')}`;
+          const generatedImage = await generateImages(prompt, object, isHD, imageAspect);
           generatedImages.push(generatedImage);
+          setImages([...generatedImages]);
+          setGenerationProgress(prev => ({ ...prev, current: prev.current + 1 }));
         } catch (error) {
           console.error('Failed to generate images:', error);
         }
       } else {
         for (const style of selectedStyles) {
           try {
-            const prompt = `${basePrompt} in the style of ${style}`;
+            const prompt = `${editablePrompt} in the style of ${style}`;
             const generatedImage = await generateImages(prompt, object, isHD, imageAspect);
             generatedImages.push(generatedImage);
+            setImages([...generatedImages]);
+            setGenerationProgress(prev => ({ ...prev, current: prev.current + 1 }));
           } catch (error) {
             console.error('Failed to generate images:', error);
           }
         }
       }
     }
-    setImages(generatedImages);
+    setIsLoading(false);
   };
-
-  // Effect to update the editable prompt based on style selection changes
-  useEffect(() => {
-    const stylesText = shouldCombineStyles ? `combining the styles of ${selectedStyles.join(', ')}` : "";
-    setEditablePrompt(`Create an image of [Objects] ${stylesText}`);
-  }, [selectedStyles, shouldCombineStyles]);
 
   return {
     images, onGenerate, objects, setObjects, editablePrompt, setEditablePrompt,
-    isHD, toggleIsHD, imageAspect, setImageAspect
+    isHD, toggleIsHD, imageAspect, setImageAspect, isLoading, generationProgress
   };
 }
+
